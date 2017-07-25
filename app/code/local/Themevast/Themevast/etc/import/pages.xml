@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<bigboom>
+    <resources>
+        <resource>
+            <title>Bigboom Home page</title>
+            <identifier>tv_bigboom_home2</identifier>
+            <root_template>one_column</root_template>
+		<content><![CDATA[
+		<div class="home-content">{{block type="saleproduct/saleproduct" name="saleproduct" template="themevast/saleproduct/deal_product.phtml" }}{{block type="featuredproduct/featuredproduct" name="featuredproduct" template="themevast/featuredproduct/featuredproduct.phtml" }}{{block type="brandlogo/brandlogo" name="brand.logo" template="themevast/brandlogo/brandlogo.phtml"}}{{block type="bestsellerslider/bestsellerslider" name="bestsellerslider" template="themevast/bestsellerslider/bestsellerslider.phtml"}}</div>
+		]]></content>
+		<sort_order>1</sort_order>
+            <is_active>1</is_active>
+        </resource>
+    </resources>
+</bigboom>
