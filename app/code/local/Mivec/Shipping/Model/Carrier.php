@@ -1,5 +1,5 @@
 <?php
-class Mivec_Shipping_Model_Carrier extends Mage_Core_Model_Abstrct
+class Mivec_Shipping_Model_Carrier extends Mage_Core_Model_Abstract
 {
 	public function _construct()
 	{
