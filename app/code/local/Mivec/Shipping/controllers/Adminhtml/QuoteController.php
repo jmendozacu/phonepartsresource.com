@@ -51,7 +51,7 @@ class Mivec_Shipping_Adminhtml_QuoteController extends Mage_Adminhtml_Controller
 	
 	public function saveAction() 
 	{
-		//print_r($this->getRequest());exit;
+		//print_r($this->getRequest()->getPost());exit;
 		if ($data = $this->getRequest()->getPost()) {
 			$model = Mage::getModel('shipping/quote');
 			

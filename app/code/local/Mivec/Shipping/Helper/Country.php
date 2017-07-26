@@ -21,4 +21,10 @@ class Mivec_Shipping_Helper_Country extends Mage_Core_Helper_Abstract
 			return $data;
 		}
 	}
+	
+	public function getCountry($_key,$_value)
+	{
+		$_collection = $this->getCollection($_key , $_value);
+		return $_collection->getFirstItem();
+	}
 }

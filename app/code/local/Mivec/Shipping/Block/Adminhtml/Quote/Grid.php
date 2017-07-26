@@ -24,7 +24,7 @@ class Mivec_Shipping_Block_Adminhtml_Quote_Grid extends Mage_Adminhtml_Block_Wid
 			'header'    => 'ID',
 			'align'     =>'right',
 			'width'     => '50px',
-			'index'     => 'carrier_id',
+			'index'     => 'id',
 		));
 		
 		//carrier

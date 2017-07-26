@@ -13,6 +13,7 @@ class Mivec_Shipping_Block_Adminhtml_Quote_Edit_Tab_Form extends Mage_Adminhtml_
 		$_carriers = Mage::helper('shipping/carrier')->getCarriers();
 		$fieldset->addField('carrier_id', 'select', array(
 			'label'     => 'Carrier',
+			'name'		=> 'carrier_id',
 			'class'     => 'required-entry',
 			'required'	=> true,
 			'values'	=> $_carriers,
@@ -22,6 +23,7 @@ class Mivec_Shipping_Block_Adminhtml_Quote_Edit_Tab_Form extends Mage_Adminhtml_
 
 		$_countries = Mage::helper('shipping/country')->getCountries();
 		$fieldset->addField('country_id', 'select', array(
+			'name'		=> 'country_id',
 			'label'     => 'Country',
 			//'required'	=> true,
 			'values'	=> $_countries,
@@ -29,18 +31,21 @@ class Mivec_Shipping_Block_Adminhtml_Quote_Edit_Tab_Form extends Mage_Adminhtml_
 		));
 		
 		$fieldset->addField('quote_first' , "text" , array(
+			'name'		=> 'quote_first',
 			'label'		=> 'Price Of First Weight',
 			'required'     => true,
 			'value'		=> $formData['quote_first'],
 		));
 		
 		$fieldset->addField('quote_add' , "text" , array(
+			'name'		=> 'quote_add',
 			'label'		=> 'Price Of Added Weight',
 			'required'     => true,
 			'value'		=> $formData['quote_add'],
 		));
 		
 		$fieldset->addField('quote_remote' , "text" , array(
+			'name'		=> 'quote_remote',
 			'label'		=> 'Price Of Remotion',
 			'value'		=> $formData['quote_remote'],
 		));
@@ -109,7 +114,7 @@ class Mivec_Shipping_Block_Adminhtml_Quote_Edit_Tab_Form extends Mage_Adminhtml_
 			  'wysiwyg'   => false,
 			  'required'  => true,
 		  ));*/
-		 
+
 		if ( Mage::getSingleton('adminhtml/session')->getQuoteData() )
 		{
 			$form->setValues(Mage::getSingleton('adminhtml/session')->getQuoteData());

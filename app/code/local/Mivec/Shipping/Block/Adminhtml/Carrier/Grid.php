@@ -36,7 +36,7 @@ class Mivec_Shipping_Block_Adminhtml_Carrier_Grid extends Mage_Adminhtml_Block_W
 		
 		$this->addColumn('updated_at' , array(
 			'header'	=> 'Updated Date',
-			'algin'		=> 'left',
+			'align'		=> 'left',
 			'type'		=> 'date',
 			'index'		=> 'updated_at'
 		));
