@@ -1,7 +1,7 @@
 <?php
 class Mivec_Shipping_Adminhtml_CarrierController extends Mage_Adminhtml_Controller_Action
 {
-	public function _initAction()
+	protected function _initAction()
 	{
 		$this->loadLayout()
 			->_setActiveMenu("shipping/carrier")
@@ -27,7 +27,7 @@ class Mivec_Shipping_Adminhtml_CarrierController extends Mage_Adminhtml_Controll
 			if (!empty($data)) {
 				$model->setData($data);
 			}
-
+			
 			Mage::register('carrier_data', $model);
 
 			$this->loadLayout();
@@ -47,6 +47,55 @@ class Mivec_Shipping_Adminhtml_CarrierController extends Mage_Adminhtml_Controll
 	
 	public function newAction()
 	{
+		$this->_forward('edit');
+	}
+	
+	public function saveAction() 
+	{
+		if ($data = $this->getRequest()->getPost()) {
+			$model = Mage::getModel('shipping/carrier');
+			$data['updated_at'] = date("Y-m-d");
+			$model->setData($data)
+					->setId($this->getRequest()->getParam('id'));
 			
+			try {
+				$model->save();
+				Mage::getSingleton('adminhtml/session')->addSuccess('It was successfully saved');
+				Mage::getSingleton('adminhtml/session')->setFormData(false);
+
+				if ($this->getRequest()->getParam('back')) {
+					$this->_redirect('*/*/edit', array('id' => $model->getId()));
+					return;
+				}
+				$this->_redirect('*/*/');
+				return;
+            } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+                Mage::getSingleton('adminhtml/session')->setFormData($data);
+                $this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
+                return;
+            }
+        }
+        Mage::getSingleton('adminhtml/session')->addError('Unable to find item to save');
+        $this->_redirect('*/*/');
+	}
+	
+	public function deleteAction()
+	{
+		if( $this->getRequest()->getParam('id') > 0 ) {
+			try {
+				$model = Mage::getModel('shipping/carrier');
+				 
+				$model->setId($this->getRequest()->getParam('id'))
+					->delete();
+					 
+				Mage::getSingleton('adminhtml/session')->addSuccess('It was successfully deleted');
+				$this->_redirect('*/*/');
+			} catch (Exception $e) {
+				Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+				$this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
+			}
+		}
+		$this->_redirect('*/*/');
 	}
 }

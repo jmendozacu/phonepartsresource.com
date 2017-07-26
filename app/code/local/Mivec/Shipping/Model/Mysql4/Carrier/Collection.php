@@ -7,7 +7,7 @@ class Mivec_Shipping_Model_Mysql4_Carrier_Collection extends Mage_Core_Model_Mys
         $this->_init('shipping/carrier');
     }
 	
-	public function addAttributeToFilter($key,$value,$method='and')
+/*	public function addAttributeToFilter($key,$value,$method='and')
 	{
 		if (is_array($value)) {
 			foreach ($value as $val) {
@@ -36,5 +36,5 @@ class Mivec_Shipping_Model_Mysql4_Carrier_Collection extends Mage_Core_Model_Mys
 	{
 		$this->getSelect()->order("{$key} $dir");
 		return $this;
-	}
+	}*/
 }

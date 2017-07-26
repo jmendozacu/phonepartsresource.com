@@ -1,19 +1,19 @@
 <?php
-class Mivec_Shipping_Block_Adminhtml_Carrier_Edit_Tab_Form extends Mage_Adminhtml_Block_Widget_Form
+class Mivec_Shipping_Block_Adminhtml_Quote_Edit_Tab_Form extends Mage_Adminhtml_Block_Widget_Form
 {
 	protected function _prepareForm()
 	{
 		$form = new Varien_Data_Form();
 		$this->setForm($form);
-		$fieldset = $form->addFieldset('carrier_form', array('legend' => 'Carrier'));
+		$fieldset = $form->addFieldset('quote_form', array('legend' => 'Carrier'));
 		
 		//print_r(Mage::registry('carrier_data')->getData());exit;
 		
-		$fieldset->addField('carrier_name', 'text', array(
+/*		$fieldset->addField('carrier_name', 'text', array(
 			'label'     => 'Carrier Name',
 			'name'      => 'carrier_name',
 			'value'		=> Mage::registry('carrier_data')->getData("carrier_name")
-		));
+		));*/
 		
 /*		$fieldset->addField('status', 'select', array(
 			'label'     => Mage::helper('coupon')->__('Status'),

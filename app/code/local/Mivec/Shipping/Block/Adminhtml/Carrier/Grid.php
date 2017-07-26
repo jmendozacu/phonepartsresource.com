@@ -20,7 +20,7 @@ class Mivec_Shipping_Block_Adminhtml_Carrier_Grid extends Mage_Adminhtml_Block_W
 	
 	protected function _prepareColumns()
 	{
-		$this->addColumn('id', array(
+		$this->addColumn('carrier_id', array(
 			'header'    => 'ID',
 			'align'     =>'right',
 			'width'     => '200px',
@@ -53,6 +53,12 @@ class Mivec_Shipping_Block_Adminhtml_Carrier_Grid extends Mage_Adminhtml_Block_W
 						'url'       => array('base'=> '*/*/edit'),
 						'field'     => 'id'
 					)
+					,array(
+						'caption'   => 'Delete',
+						'url'       => array('base'=> '*/*/delete'),
+						'field'     => 'id',
+						'confirm'   => 'Are you sure?'
+					)
 				),
 				'filter'    => false,
 				'sortable'  => false,
@@ -64,6 +70,6 @@ class Mivec_Shipping_Block_Adminhtml_Carrier_Grid extends Mage_Adminhtml_Block_W
 	
 	public function getRowUrl($row)
 	{
-		return $this->getUrl('*/*/edit', array('id' => $row->getId()));
+		//return $this->getUrl('*/*/edit', array('id' => $row->getId()));
 	}
 }
