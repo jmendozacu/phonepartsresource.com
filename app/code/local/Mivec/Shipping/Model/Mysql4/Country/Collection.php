@@ -6,8 +6,8 @@ class Mivec_Shipping_Model_Mysql4_Country_Collection extends Mage_Core_Model_Mys
         parent::_construct();
         $this->_init('shipping/country');
     }
-	
-/*   public function addAttributeToFilter($key,$value,$method = 'and')
+	   
+	public function addAttributeToFilter($key,$value,$method = 'and')
     {
         switch($method) {
             case "in":
@@ -38,6 +38,7 @@ class Mivec_Shipping_Model_Mysql4_Country_Collection extends Mage_Core_Model_Mys
         return $this;
     }
 	
+	/*
 	public function fetch()
 	{
 		$sql = $this->_select->__toString();

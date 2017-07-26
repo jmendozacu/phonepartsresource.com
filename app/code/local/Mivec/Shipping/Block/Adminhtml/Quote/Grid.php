@@ -47,7 +47,7 @@ class Mivec_Shipping_Block_Adminhtml_Quote_Grid extends Mage_Adminhtml_Block_Wid
 			'width'     => '100px',
 			'type'		=> 'options',
 			'index'		=> 'country_id',
-			"options"	    => $_countries,
+			"options"	=> $_countries,
 		));
 		
 		$this->addColumn('quote_first', array(

@@ -1,7 +1,7 @@
 <?php
 class Mivec_Shipping_Helper_Carrier extends Mage_Core_Helper_Abstract
 {
-	public function getCollection($_key="", $_value="")
+	public function getCarrierCollection($_key="", $_value="")
 	{
 		$_collection = Mage::getModel('shipping/carrier')
 			->getCollection();
@@ -11,9 +11,9 @@ class Mivec_Shipping_Helper_Carrier extends Mage_Core_Helper_Abstract
 		return $_collection;
 	}
 	
-	public function getCarriers()
+	public function getCarriers($_key="", $_value="")
 	{
-		if ($_collection = $this->getCollection()) {
+		if ($_collection = $this->getCarrierCollection($_key="", $_value="")) {
 			$data = array();
 			foreach ($_collection->getItems() as $_item) {
 				//print_r($_item->getData());exit;

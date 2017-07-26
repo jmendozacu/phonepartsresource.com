@@ -35,7 +35,7 @@ class Mivec_Shipping_Block_Adminhtml_Quote_Edit extends Mage_Adminhtml_Block_Wid
     public function getHeaderText()
     {
         if( Mage::registry('quote_data') && Mage::registry('quote_data')->getId() ) {
-            return Mage::helper('shipping')->__("Edit Shipping Quote '%s'" , Mage::registry('quote_data')->getId());
+            return Mage::helper('shipping')->__("Edit Shipping Quote '%s'" , "");
         } else {
             return "";
         }

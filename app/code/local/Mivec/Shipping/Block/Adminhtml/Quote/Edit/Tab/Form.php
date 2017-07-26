@@ -5,15 +5,46 @@ class Mivec_Shipping_Block_Adminhtml_Quote_Edit_Tab_Form extends Mage_Adminhtml_
 	{
 		$form = new Varien_Data_Form();
 		$this->setForm($form);
-		$fieldset = $form->addFieldset('quote_form', array('legend' => 'Carrier'));
+		$fieldset = $form->addFieldset('quote_form', array('legend' => 'Shipping Quote'));
 		
-		//print_r(Mage::registry('carrier_data')->getData());exit;
+		$formData = Mage::registry("quote_data")->getData();
+		//print_r($formData);
 		
-/*		$fieldset->addField('carrier_name', 'text', array(
-			'label'     => 'Carrier Name',
-			'name'      => 'carrier_name',
-			'value'		=> Mage::registry('carrier_data')->getData("carrier_name")
-		));*/
+		$_carriers = Mage::helper('shipping/carrier')->getCarriers();
+		$fieldset->addField('carrier_id', 'select', array(
+			'label'     => 'Carrier',
+			'class'     => 'required-entry',
+			'required'	=> true,
+			'values'	=> $_carriers,
+			'value'		=> $formData['carrier_id'],
+			//'after_element_html' => 'Select Shipping Carrier',
+		));
+
+		$_countries = Mage::helper('shipping/country')->getCountries();
+		$fieldset->addField('country_id', 'select', array(
+			'label'     => 'Country',
+			//'required'	=> true,
+			'values'	=> $_countries,
+			'value'		=> $formData['country_id']
+		));
+		
+		$fieldset->addField('quote_first' , "text" , array(
+			'label'		=> 'Price Of First Weight',
+			'required'     => true,
+			'value'		=> $formData['quote_first'],
+		));
+		
+		$fieldset->addField('quote_add' , "text" , array(
+			'label'		=> 'Price Of Added Weight',
+			'required'     => true,
+			'value'		=> $formData['quote_add'],
+		));
+		
+		$fieldset->addField('quote_remote' , "text" , array(
+			'label'		=> 'Price Of Remotion',
+			'value'		=> $formData['quote_remote'],
+		));
+		
 		
 /*		$fieldset->addField('status', 'select', array(
 			'label'     => Mage::helper('coupon')->__('Status'),
@@ -79,12 +110,12 @@ class Mivec_Shipping_Block_Adminhtml_Quote_Edit_Tab_Form extends Mage_Adminhtml_
 			  'required'  => true,
 		  ));*/
 		 
-		if ( Mage::getSingleton('adminhtml/session')->getCarrierData() )
+		if ( Mage::getSingleton('adminhtml/session')->getQuoteData() )
 		{
-			$form->setValues(Mage::getSingleton('adminhtml/session')->getCarrierData());
-			Mage::getSingleton('adminhtml/session')->getCarrierData(null);
-		} elseif ( Mage::registry('carrier_data') ) {
-			$form->setValues(Mage::registry('carrier_data')->getData());
+			$form->setValues(Mage::getSingleton('adminhtml/session')->getQuoteData());
+			Mage::getSingleton('adminhtml/session')->getQuoteData(null);
+		} elseif ( Mage::registry('quote_data') ) {
+			$form->setValues(Mage::registry('quote_data')->getData());
 		}
 			return parent::_prepareForm();
 		}
