@@ -1,5 +1,5 @@
 /*
-SQLyog Ultimate v8.61 
+SQLyog Ultimate - MySQL GUI v8.2 
 MySQL - 5.5.5-10.1.10-MariaDB : Database - phonepartsresource_com
 *********************************************************************
 */
@@ -23,13 +23,15 @@ DROP TABLE IF EXISTS `mivec_shipping_carrier`;
 CREATE TABLE `mivec_shipping_carrier` (
   `carrier_id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `carrier_name` varchar(50) NOT NULL,
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`carrier_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `mivec_shipping_carrier` */
 
 LOCK TABLES `mivec_shipping_carrier` WRITE;
+
+insert  into `mivec_shipping_carrier`(`carrier_id`,`carrier_name`,`updated_at`) values (1,'DHL','2017-07-26'),(2,'UPS','2017-07-26'),(3,'Aramex','2017-07-26'),(5,'Fedex','2017-07-26'),(6,'TNT','2017-07-26');
 
 UNLOCK TABLES;
 
@@ -52,27 +54,30 @@ insert  into `mivec_shipping_country`(`id`,`country`,`iso`) values (1,'Afghanist
 
 UNLOCK TABLES;
 
-/*Table structure for table `mivec_shipping_data` */
+/*Table structure for table `mivec_shipping_quote` */
 
-DROP TABLE IF EXISTS `mivec_shipping_data`;
+DROP TABLE IF EXISTS `mivec_shipping_quote`;
 
-CREATE TABLE `mivec_shipping_data` (
-  `data_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `mivec_shipping_quote` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `carrier_id` smallint(6) unsigned NOT NULL COMMENT 'carrier id',
   `country_id` mediumint(8) unsigned NOT NULL,
   `quote_first` decimal(5,2) NOT NULL,
   `quote_add` decimal(5,2) NOT NULL,
+  `quote_remote` decimal(5,2) NOT NULL DEFAULT '0.00',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`data_id`),
+  PRIMARY KEY (`id`),
   KEY `mivec_shipping_data_carrier` (`carrier_id`),
   KEY `mivec_shipping_country` (`country_id`),
   CONSTRAINT `FK_mivec_shipping_data_carrier` FOREIGN KEY (`carrier_id`) REFERENCES `mivec_shipping_carrier` (`carrier_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_mivec_shipping_data_country` FOREIGN KEY (`country_id`) REFERENCES `mivec_shipping_country` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-/*Data for the table `mivec_shipping_data` */
+/*Data for the table `mivec_shipping_quote` */
 
-LOCK TABLES `mivec_shipping_data` WRITE;
+LOCK TABLES `mivec_shipping_quote` WRITE;
+
+insert  into `mivec_shipping_quote`(`id`,`carrier_id`,`country_id`,`quote_first`,`quote_add`,`quote_remote`,`updated_at`) values (1,1,3,'86.30','32.10','0.00','2017-07-26 17:49:53');
 
 UNLOCK TABLES;
 
