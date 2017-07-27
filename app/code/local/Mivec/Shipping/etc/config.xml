@@ -3,21 +3,18 @@
     <modules>
         <Mivec_Shipping>
             <version>0.1</version>
-            <depends>
-                <Mage_Shipping />
-            </depends>
         </Mivec_Shipping>
     </modules>
 
     <admin>
         <routers>
-			<mivec_shipping>
+			<shipping>
 				<use>admin</use>
 				<args>
 					<module>Mivec_Shipping</module>
 					<frontName>shipping</frontName>
 				</args>
-			</mivec_shipping>
+			</shipping>
         </routers>
     </admin>
     <adminhtml>
@@ -26,7 +23,7 @@
 				<title>MIVEC</title>
 				<sort_order>71</sort_order> 
 				<children>
-					<mivec_shipping translate="title" module="shipping">
+					<shipping translate="title" module="shipping">
 						<title>Shipping</title>
 						<sort_order>71</sort_order> 
 						<children>
@@ -41,26 +38,26 @@
 								<action>shipping/adminhtml_quote</action>
 							</quote>
 						</children>    
-					</mivec_shipping>
+					</shipping>
 				</children>        
 			</mivec>
 		</menu>
 		
 		<layout>
 			<updates>
-				<mivec_shipping>
+				<shipping>
 					<file>mivec_shipping.xml</file>
-				</mivec_shipping>
+				</shipping>
 			</updates>
 		</layout>
     </adminhtml>
 	
     <global>
         <models>
-            <mivec_shipping>
+            <shipping>
                 <class>Mivec_Shipping_Model</class>
 				<resourceModel>shipping_mysql4</resourceModel>
-            </mivec_shipping>
+            </shipping>
             <shipping_mysql4>
                 <class>Mivec_Shipping_Model_Mysql4</class>
                 <entities>
@@ -97,14 +94,14 @@
             </shipping_read>
         </resources>
         <blocks>
-            <mivec_shipping>
+            <shipping>
                 <class>Mivec_Shipping_Block</class>
-            </mivec_shipping>
+            </shipping>
         </blocks>
         <helpers>
-            <mivec_shipping>
+            <shipping>
                 <class>Mivec_Shipping_Helper</class>
-            </mivec_shipping>
+            </shipping>
         </helpers>
     </global>
 
