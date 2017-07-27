@@ -3,21 +3,21 @@
     <modules>
         <Mivec_Shipping>
             <version>0.1</version>
-            <!--depends>
+            <depends>
                 <Mage_Shipping />
-            </depends-->
+            </depends>
         </Mivec_Shipping>
     </modules>
 
     <admin>
         <routers>
-			<shipping>
+			<mivec_shipping>
 				<use>admin</use>
 				<args>
 					<module>Mivec_Shipping</module>
 					<frontName>shipping</frontName>
 				</args>
-			</shipping>
+			</mivec_shipping>
         </routers>
     </admin>
     <adminhtml>
@@ -26,7 +26,7 @@
 				<title>MIVEC</title>
 				<sort_order>71</sort_order> 
 				<children>
-					<shipping translate="title" module="shipping">
+					<mivec_shipping translate="title" module="shipping">
 						<title>Shipping</title>
 						<sort_order>71</sort_order> 
 						<children>
@@ -41,26 +41,26 @@
 								<action>shipping/adminhtml_quote</action>
 							</quote>
 						</children>    
-					</shipping>
+					</mivec_shipping>
 				</children>        
 			</mivec>
 		</menu>
 		
 		<layout>
 			<updates>
-				<shipping>
+				<mivec_shipping>
 					<file>mivec_shipping.xml</file>
-				</shipping>
+				</mivec_shipping>
 			</updates>
 		</layout>
     </adminhtml>
 	
     <global>
         <models>
-            <shipping>
+            <mivec_shipping>
                 <class>Mivec_Shipping_Model</class>
 				<resourceModel>shipping_mysql4</resourceModel>
-            </shipping>
+            </mivec_shipping>
             <shipping_mysql4>
                 <class>Mivec_Shipping_Model_Mysql4</class>
                 <entities>
@@ -97,14 +97,14 @@
             </shipping_read>
         </resources>
         <blocks>
-            <shipping>
+            <mivec_shipping>
                 <class>Mivec_Shipping_Block</class>
-            </shipping>
+            </mivec_shipping>
         </blocks>
         <helpers>
-            <shipping>
+            <mivec_shipping>
                 <class>Mivec_Shipping_Helper</class>
-            </shipping>
+            </mivec_shipping>
         </helpers>
     </global>
 
@@ -112,10 +112,8 @@
         <carriers>
             <mivec_shipping>
                 <active>1</active>
-                <model>mivec_shipping_model_carrier</model>
+                <model>mivec_shipping_model_rate_request</model>
                 <title>Internation Express</title>
-                <allowed_methods></allowed_methods>
-                <weight_unit>kg</weight_unit>
                 <sallowspecific>0</sallowspecific>
                 <sort_order>10</sort_order>
             </mivec_shipping>
