@@ -104,17 +104,4 @@
             </ship>
         </helpers>
     </global>
-
-    <default>
-        <carriers>
-            <mivec_ship>
-                <active>1</active>
-                <model>mivec_shipping_model_rate_request</model>
-                <title>Internation Express</title>
-                <sallowspecific>0</sallowspecific>
-                <sort_order>10</sort_order>
-            </mivec_ship>
-        </carriers>
-    </default>
-
 </config>

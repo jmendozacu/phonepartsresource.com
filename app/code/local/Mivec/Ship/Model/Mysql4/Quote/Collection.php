@@ -6,8 +6,8 @@ class Mivec_Ship_Model_Mysql4_Quote_Collection extends Mage_Core_Model_Mysql4_Co
         parent::_construct();
         $this->_init('ship/quote');
     }
-	
-/*   public function addAttributeToFilter($key,$value,$method = 'and')
+
+	public function addAttributeToFilter($key,$value,$method = 'and')
     {
         switch($method) {
             case "in":
@@ -22,7 +22,6 @@ class Mivec_Ship_Model_Mysql4_Quote_Collection extends Mage_Core_Model_Mysql4_Co
                 break;
 
             case "like" :
-                //$this->getSelect()->where($key . " LIKE '%$value%'");
                 $this->getSelect()->orWhere($key . " LIKE ?", "%" .$value . "%");
                 break;
 
@@ -37,6 +36,13 @@ class Mivec_Ship_Model_Mysql4_Quote_Collection extends Mage_Core_Model_Mysql4_Co
         }
         return $this;
     }
+	
+	public function getCount()
+	{
+		$sql = $this->_select->__toString();
+		$count = $this->getConnection()->fetchOne($sql);
+		return $count;
+	}
 	
 	public function fetch()
 	{
@@ -55,5 +61,5 @@ class Mivec_Ship_Model_Mysql4_Quote_Collection extends Mage_Core_Model_Mysql4_Co
 	{
 		$this->getSelect()->order("{$key} $dir");
 		return $this;
-	}*/
+	}
 }
