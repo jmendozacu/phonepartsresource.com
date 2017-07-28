@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Mivec_Ship>
+            <version>0.1</version>
+        </Mivec_Ship>
+    </modules>
+
+    <admin>
+        <routers>
+			<ship>
+				<use>admin</use>
+				<args>
+					<module>Mivec_Ship</module>
+					<frontName>ship</frontName>
+				</args>
+			</ship>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<mivec module="shipping">
+				<title>MIVEC</title>
+				<sort_order>71</sort_order> 
+				<children>
+					<ship translate="title" module="shipping">
+						<title>Shipping</title>
+						<sort_order>71</sort_order> 
+						<children>
+							<carrier module="shipping" translate="title">
+								<title>Carrier</title>
+								<sort_order>1</sort_order>
+								<action>ship/adminhtml_carrier</action>
+							</carrier>
+							<quote module="shipping" translate="title">
+								<title>Shipping Quote</title>
+								<sort_order>3</sort_order>
+								<action>ship/adminhtml_quote</action>
+							</quote>
+						</children>    
+					</ship>
+				</children>        
+			</mivec>
+		</menu>
+		
+		<layout>
+			<updates>
+				<ship>
+					<file>mivec_ship.xml</file>
+				</ship>
+			</updates>
+		</layout>
+    </adminhtml>
+	
+    <global>
+        <models>
+            <ship>
+                <class>Mivec_Ship_Model</class>
+				<resourceModel>shipping_mysql4</resourceModel>
+            </ship>
+            <shipping_mysql4>
+                <class>Mivec_Ship_Model_Mysql4</class>
+                <entities>
+                    <country>
+                        <table>mivec_shipping_country</table>
+                    </country>
+                    <carrier>
+                        <table>mivec_shipping_carrier</table>
+                    </carrier>
+                    <quote>
+                        <table>mivec_shipping_quote</table>
+                    </quote>
+                </entities>
+            </shipping_mysql4>
+        </models>
+        <resources>
+            <ship_setup>
+                <setup>
+                    <module>Mivec_Ship</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ship_setup>
+            <ship_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ship_write>
+            <ship_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ship_read>
+        </resources>
+        <blocks>
+            <ship>
+                <class>Mivec_Ship_Block</class>
+            </ship>
+        </blocks>
+        <helpers>
+            <ship>
+                <class>Mivec_Ship_Helper</class>
+            </ship>
+        </helpers>
+    </global>
+
+    <default>
+        <carriers>
+            <mivec_ship>
+                <active>1</active>
+                <model>mivec_shipping_model_rate_request</model>
+                <title>Internation Express</title>
+                <sallowspecific>0</sallowspecific>
+                <sort_order>10</sort_order>
+            </mivec_ship>
+        </carriers>
+    </default>
+
+</config>

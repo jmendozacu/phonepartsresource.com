@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <ship_adminhtml_carrier_index>
+        <reference name="content">
+            <block type="ship/adminhtml_carrier" name="carrier" />
+        </reference>
+    </ship_adminhtml_carrier_index>
+	
+    <ship_adminhtml_quote_index>
+        <reference name="content">
+            <block type="ship/adminhtml_quote" name="shipping_quote" />
+        </reference>
+    </ship_adminhtml_quote_index>
+	
+</layout>
