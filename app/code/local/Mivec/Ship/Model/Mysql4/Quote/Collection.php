@@ -47,6 +47,8 @@ class Mivec_Ship_Model_Mysql4_Quote_Collection extends Mage_Core_Model_Mysql4_Co
 	public function fetch()
 	{
 		$sql = $this->_select->__toString();
+		//echo $sql;exit;
+		
 		$this->_fetch = $this->getConnection()->fetchAll($sql);
 		return $this;
 	}
