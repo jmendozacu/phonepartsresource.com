@@ -5,7 +5,6 @@
             <version>0.1</version>
         </Mivec_Ship>
     </modules>
-
     <frontend>
         <routers>
             <ship>
@@ -19,12 +18,11 @@
         <layout>
             <updates>
                 <ship>
-                    <file>mivec_ship.xml</file>
+                    <file>mivec/ship.xml</file>
                 </ship>
             </updates>
         </layout>
     </frontend>
-	
     <admin>
         <routers>
 			<ship>

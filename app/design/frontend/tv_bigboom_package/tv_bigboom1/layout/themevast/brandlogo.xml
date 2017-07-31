@@ -10,6 +10,8 @@
             </action>           
         </reference>
         <reference name="brand_logo">
+		<block type="ship/home_quote" name="ship.quote" before="brand.logo" template="mivec/ship/home_quote.phtml"/> <!-- edit by mivec -->
+		
             <block type="brandlogo/brandlogo" name="brand.logo">
                 <action method="setTemplate" ifconfig="brandlogo/brandlogo/enabled">
                     <template>themevast/brandlogo/brandlogo.phtml</template>

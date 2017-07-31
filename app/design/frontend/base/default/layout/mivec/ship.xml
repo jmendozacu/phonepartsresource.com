@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="mivec_ship_quote">
+			<block type="ship/home_quote" name="ship.quote" before="brand.logo" template="mivec/ship/home_quote.phtml"/>
+		</reference>
+	</default>
+</layout> 
