@@ -10,9 +10,9 @@ if (count($_quotes)) :
 <table width="100%" border="0" cellspacing="5" cellpadding="0">
     <tr>
         <td width="18%">Carrier</td>
-        <td width="23%">Country</td>
-        <td width="18%">Quote First</td>
-        <td width="26%"><p>Quote Added</p></td>
+        <td width="21%">Original Country</td>
+        <td width="21%">Dest. Country</td>
+        <td width="25%">Shipping Quotes / 1kg.</td>
         <td width="15%"><p>Update Date</p></td>
     </tr>
     
@@ -27,17 +27,18 @@ if (count($_quotes)) :
 			'carrier'	=> $_carrierData['carrier_name'],
 			'country_id'	=> $_quote['country_id'],
 			'country'	=> $_countryData['country'],
-			'quote_first'	=> "USD $" .$_quote['quote_first'],
-			'quote_add'		=> "USD $" . $_quote['quote_add'],
+			//'quote_first'	=> "USD $" .$_quote['quote_first'],
+			//'quote_add'		=> "USD $" . $_quote['quote_add'],
+			'quote'		=> "USD $" . $_quote['quote_first'] + $_quote['quote_add'],
 			'updated_at'	=> $_quote['updated_at']
 		);
 		//print_r($data);exit;
 	?>
     <tr>
         <td><?php echo $data['carrier']?></td>
+        <td>Hongkong</td>
         <td><?php echo $data['country']?></td>
-        <td><?php echo $data['quote_first']?></td>
-        <td><?php echo $data['quote_add']?></td>
+        <td><?php echo $data['quote']?></td>
         <td><?php echo $data['updated_at']?></td>
     </tr>
     <?php endforeach;?>
