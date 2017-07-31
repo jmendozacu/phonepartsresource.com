@@ -6,6 +6,25 @@
         </Mivec_Ship>
     </modules>
 
+    <frontend>
+        <routers>
+            <ship>
+                <use>standard</use>
+                <args>
+                    <module>Mivec_Ship</module>
+                    <frontName>shipping</frontName>
+                </args>
+            </ship>
+        </routers>
+        <layout>
+            <updates>
+                <ship>
+                    <file>mivec_ship.xml</file>
+                </ship>
+            </updates>
+        </layout>
+    </frontend>
+	
     <admin>
         <routers>
 			<ship>
@@ -19,20 +38,20 @@
     </admin>
     <adminhtml>
 		<menu>
-			<mivec module="shipping">
+			<mivec module="ship">
 				<title>MIVEC</title>
 				<sort_order>71</sort_order> 
 				<children>
-					<ship translate="title" module="shipping">
+					<ship translate="title" module="ship">
 						<title>Shipping</title>
 						<sort_order>71</sort_order> 
 						<children>
-							<carrier module="shipping" translate="title">
+							<carrier module="ship" translate="title">
 								<title>Carrier</title>
 								<sort_order>1</sort_order>
 								<action>ship/adminhtml_carrier</action>
 							</carrier>
-							<quote module="shipping" translate="title">
+							<quote module="ship" translate="title">
 								<title>Shipping Quote</title>
 								<sort_order>3</sort_order>
 								<action>ship/adminhtml_quote</action>
