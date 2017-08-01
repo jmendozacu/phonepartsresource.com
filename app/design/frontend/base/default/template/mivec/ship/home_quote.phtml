@@ -29,7 +29,7 @@ if (count($_quotes)) :
 			'country'	=> $_countryData['country'],
 			//'quote_first'	=> "USD $" .$_quote['quote_first'],
 			//'quote_add'		=> "USD $" . $_quote['quote_add'],
-			'quote'		=> "USD $" . $_quote['quote_first'] + $_quote['quote_add'],
+			'quote'		=> "USD $" . ($_quote['quote_first'] + $_quote['quote_add']),
 			'updated_at'	=> $_quote['updated_at']
 		);
 		//print_r($data);exit;
