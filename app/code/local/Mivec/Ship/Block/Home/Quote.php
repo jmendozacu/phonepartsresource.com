@@ -9,8 +9,8 @@ class Mivec_Ship_Block_Home_Quote extends Mage_Core_Block_Template
 	public function getShippingQuote()
 	{
 		$_collection = Mage::helper('ship/quote')->getShippingCollection()
-			->addAttributeToFilter()
-			->setPageSize(20)
+			//->addAttributeToFilter()
+			->setPageSize(10)
 			->setOrder('id' , 'DESC');
 		return $_collection;
 	}

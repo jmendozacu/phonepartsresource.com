@@ -1,6 +1,47 @@
 <?php
-echo "ship/quote";
-
+//echo "ship/quote";
 $_quotes = $this->getShippingQuote();
-print_r($_quotes);
+//print_r($_quotes->getItems());exit;
+
+if (count($_quotes)) :
 ?>
+<div class="brandlogo-contain">
+<div class="bx-title brand-title"><h2>Shipping Quotes</h2></div>
+<table width="100%" border="0" cellspacing="5" cellpadding="0">
+    <tr>
+        <td width="18%">Carrier</td>
+        <td width="21%">Original Country</td>
+        <td width="21%">Dest. Country</td>
+        <td width="25%">Shipping Quotes / 1kg.</td>
+        <td width="15%"><p>Update Date</p></td>
+    </tr>
+    
+    <?php
+    foreach ($_quotes as $_quote) :
+		$_carrierData = Mage::helper('ship/carrier')->getCarrier('carrier_id' , $_quote['carrier_id']);
+		$_countryData = Mage::helper('ship/country')->getCountry('id' , $_quote['country_id']);
+		//print_r($_countryData);exit;
+		$data = array(
+			'id'	=> $_quote['id'],
+			'carrier_id'	=> $_quote['carrier_id'],
+			'carrier'	=> $_carrierData['carrier_name'],
+			'country_id'	=> $_quote['country_id'],
+			'country'	=> $_countryData['country'],
+			//'quote_first'	=> "USD $" .$_quote['quote_first'],
+			//'quote_add'		=> "USD $" . $_quote['quote_add'],
+			'quote'		=> "USD $" . $_quote['quote_first'] + $_quote['quote_add'],
+			'updated_at'	=> $_quote['updated_at']
+		);
+		//print_r($data);exit;
+	?>
+    <tr>
+        <td><?php echo $data['carrier']?></td>
+        <td>Hongkong</td>
+        <td><?php echo $data['country']?></td>
+        <td><?php echo $data['quote']?></td>
+        <td><?php echo $data['updated_at']?></td>
+    </tr>
+    <?php endforeach;?>
+</table>
+<?php endif;?>
+</div>
