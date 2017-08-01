@@ -1,8 +1,11 @@
 <?php
 //echo "ship/quote";
+$urlRequest = Mage::app()->getFrontController()->getRequest();
+$_pathInfo = $urlRequest->getPathInfo();
+
+if ($_pathInfo == '/') :
 $_quotes = $this->getShippingQuote();
 //print_r($_quotes->getItems());exit;
-
 if (count($_quotes)) :
 ?>
 <div class="brandlogo-contain">
@@ -45,3 +48,4 @@ if (count($_quotes)) :
 </table>
 <?php endif;?>
 </div>
+<?php endif;?>
