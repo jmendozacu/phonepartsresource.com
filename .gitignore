@@ -1,5 +1,5 @@
-/app/etc/local.xml
+/app/etc/local.xml/
 /var/
 /media/
+/sql/phonepartsresource_com/
 index.php
-

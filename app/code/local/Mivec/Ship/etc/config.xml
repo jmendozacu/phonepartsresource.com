@@ -11,7 +11,7 @@
                 <use>standard</use>
                 <args>
                     <module>Mivec_Ship</module>
-                    <frontName>shipping</frontName>
+                    <frontName>ship</frontName>
                 </args>
             </ship>
         </routers>
