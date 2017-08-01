@@ -15,11 +15,11 @@ class Mivec_Ship_Block_List extends Mivec_Ship_Block_Abstract
 		}
 		
 		if (isset($this->_params['country'])) {
-			$collection->addAttributeToFilter('country_id' , $this->param['country']);	
+			$collection->addAttributeToFilter('country_id' , $this->_params['country']);	
 		}
 		
 		$collection->setOrder('id' , "DESC");
-		//echo $collection->getSelect()->__toString();
+		echo $collection->getSelect()->__toString();
 		
 		$toolbar = $this->getLayout()->createBlock('page/html_pager');
 		//$toolbar = $this->getLayout()->createBlock('customer/order_list_toolbar');
