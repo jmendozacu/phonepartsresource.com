@@ -1422,7 +1422,8 @@ p.welcome-msg { float: left; margin: 0; color: #fff; text-transform: uppercase; 
 
 /* Content Styles ================================================================= */
 .product-name { margin:0; font-size:1em;  }
-.product-name a { color:#555555; font-size: 14px; font-weight: bold;}
+.product-name a { display:block;color:#555555; font-size: 14px; font-weight: bold;height: 52px;
+    overflow: hidden;}
 .product-name a:hover { }
 
 /* Product Tags */
@@ -2722,13 +2723,15 @@ footer {
     color: #555;
     font-size: 14px;
     font-weight: bold;
+	height: 52px;
+    overflow: hidden;
     }
 .blog-content li.item h3.title:hover {
 }
 .blog-content li.item p.author { color: #db4c52;  }
 .blog-content li.item p.des { margin: 0;  }
 .blog-content li.item .des { margin-bottom: 7px;}
-.blog-content li.item .des p { margin: 0;  color: #444;}
+.blog-content li.item .des p { margin: 0;  color: #444; height:80px;overflow:hidden;}
 
 
 .block-blog .menu-recent ul li a,
@@ -2749,7 +2752,12 @@ footer {
 .brandlogo-wrapper { margin: 30px 0;}
 .brandlogo-contain { padding: 0; text-align: center;}
 .brandlogo-contain .bx-wrapper img { display: inline;}
- 
+.brandlogo-contain>table tr:nth-child(1) td{font-size:16px;font-weight:bold;}
+.brandlogo-contain>table tr:nth-child(n+2){line-height:30px;}
+.brandlogo-contain>table tr:nth-child(n+2) td:nth-child(1){padding-left:10px;}
+.brandlogo-contain>table tr:nth-child(n+2) td:nth-child(4){padding-left:20px;}
+.brandlogo-contain>table tr:nth-child(n+2):hover{background:#ffb85d;}
+.brandlogo-contain>table tr:nth-child(n+2):hover td:hover{}
 /*-------------------------------------------------------------------------------*/
 
 /*Bestseller*/
