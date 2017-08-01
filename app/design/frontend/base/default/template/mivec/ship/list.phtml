@@ -1,0 +1,115 @@
+<?php
+//echo "ship/quote/index";
+?>
+<style>
+/* Buttons
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+button.button::-moz-focus-inner { padding:0; border:0; } /* FF Fix */
+button.button { 
+	-webkit-border-fit:lines; /* <- Safari & Google Chrome Fix */ 
+	overflow:visible; width:auto; border:0; padding:0; margin:0; background:transparent; cursor:pointer;
+}
+button.button span {
+	float:left;
+	display:block;
+	padding:0;
+	font-size:12px;
+	text-align:center; 
+	white-space:nowrap;
+	background-color:#ddd;
+	color:#333;
+	
+	transition:			color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-moz-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-webkit-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-o-transition:		color 300ms ease-in-out, background-color 300ms ease-in-out;
+}
+button.button:hover span { background-color:#333; color:#fff; }
+button.button span span { padding:0 25px; height:35px; line-height:35px; }
+
+.warning.button span {background: #FF0000;color: #FFF}
+/* Smaller button - for inline display with input boxes
+-------------------------------------------------------------- */
+button.button.btn-inline span span,
+.product-view .box-tags .form-add button.button span span { padding:0 10px; line-height:36px; height:36px; }
+
+/* Big button: Add to cart (product view) & Proceed to checkout
+-------------------------------------------------------------- */
+/*.product-view .btn-cart span,
+button.btn-checkout span {}*/
+.product-view .btn-cart span span,
+button.btn-checkout span span { padding:5px 25px; font-size:1.1666em; /*14px*/ }
+</style>
+<div class="brandlogo-contain">
+<div class="bx-title brand-title"><a href="<?php echo Mage::getUrl('ship/quote');?>"><h2>Shipping Quotes</h2></a></div>
+<form name="ship_quote" method="get" action="?">
+<table width="100%" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+    <td width="8%">Filter By</td>
+    <td width="92%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Carrier</td>
+    <td>
+    <select name="carrier">
+    <?php foreach ($this->getCarrierOptions() as $_key => $_carrier):?>
+    <option value="<?php echo $_key?>"><?php echo $_carrier?></option>
+    <?php endforeach;?>
+    </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Country</td>
+    <td>
+    <select name="country">
+    <option value=""></option>
+    <?php foreach ($this->getCountryOptions() as $_key => $_country):?>
+    <option value="<?php echo $_key?>"><?php echo $_country?></option>
+    <?php endforeach;?>
+    </select>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+          <button id="Filter" type="submit" class="button btn-cart"> <span><span><?php echo $this->__('Filter') ?></span></span></button>
+          <button type="button" class="button btn-cart" onclick="javascript:resetResult()"> <span><span><?php echo $this->__('Reset') ?></span></span></button>
+    </td>
+    </tr>
+</table>
+</form>
+<?php if ($quoteCollection = $this->getShippingQuoteList()) :?>
+<table width="100%" border="0" cellspacing="5" cellpadding="0">
+    <tr>
+        <td width="18%">Carrier</td>
+        <td width="21%">Original Country</td>
+        <td width="21%">Dest. Country</td>
+        <td width="25%">Shipping Quotes / 1kg.</td>
+        <td width="15%"><p>Update Date</p></td>
+    </tr>
+    <?php
+    foreach ($quoteCollection->items as $_quote) :
+	?>
+    <tr>
+        <td><?php echo $_quote['carrier']?></td>
+        <td>Hongkong</td>
+        <td><?php echo $_quote['country']?></td>
+        <td><?php echo $_quote['quote']?></td>
+        <td><?php echo $_quote['updated_at']?></td>
+    </tr>
+    <?php endforeach;?>
+    <tr>
+      <td colspan="5"><?php echo $quoteCollection->toolbar->toHtml() ?></td>
+    </tr>
+</table>
+</div>
+<script type="text/javascript">
+function resetResult()
+{
+	window.location.href = "<?php echo Mage::getUrl('ship/quote')?>";
+}
+
+</script>
+<?php else:?>
+<ul class="messages"><li class="notice-msg"><ul><li><span><?php echo "Can not found any Shipping Quotes,please choice anothers carrier or country to refresh";?></span></li></ul></li></ul>
+<?php endif;?>

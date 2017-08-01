@@ -5,4 +5,14 @@
 			<block type="ship/home_quote" name="ship.quote" before="brand.logo" template="mivec/ship/home_quote.phtml"/>
 		</reference>
 	</default>
+	
+	<ship_quote_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		
+        <reference name="content">
+			<block type="ship/list" name="ship_quote_list" template="mivec/ship/list.phtml"/>
+        </reference>
+	</ship_quote_index>
 </layout> 
