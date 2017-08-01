@@ -1,4 +1,10 @@
 <?php if(!$this->getConfig('enabled')) return;
+
+//edit by mivec
+$urlRequest = Mage::app()->getFrontController()->getRequest();
+$_pathInfo = $urlRequest->getPathInfo();
+if ($_pathInfo == '/') :
+
 $slider = $this->getBrandlogo();
 if(!count($slider)) return;
 $media = Mage::getBaseUrl('media');	
@@ -6,7 +12,7 @@ $media = Mage::getBaseUrl('media');
 <section class="brandlogo-wrapper hidden-xs">
 	<div class="brandlogo-contain">
 		
-			<div class="bx-title brand-title"><h2><?php echo $this->__('Brand & Cliens') ?></h2></div>
+			<div class="bx-title brand-title"><h2><?php echo $this->__('Brand & Clients') ?></h2></div>
 			<ul class="bxslider">
 				<?php
 				foreach($slider as $slide) :
@@ -64,4 +70,4 @@ $media = Mage::getBaseUrl('media');
 	</script>
 	</div>
 </section>
-
+<?php endif;?>
