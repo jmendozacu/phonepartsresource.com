@@ -1,4 +1,5 @@
 /app/etc/local.xml/
+/.idea/
 /var/
 /media/
 /sql/phonepartsresource_com/

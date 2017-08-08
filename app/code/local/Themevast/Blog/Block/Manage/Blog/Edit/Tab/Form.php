@@ -170,6 +170,7 @@ class Themevast_Blog_Block_Manage_Blog_Edit_Tab_Form extends Mage_Adminhtml_Bloc
         } catch (Exception $ex) {
             $config = null;
         }
+       // print_r($config->getData());exit;
 
         if (Mage::getStoreConfig('blog/blog/useshortcontent')) {
             $fieldset->addField(

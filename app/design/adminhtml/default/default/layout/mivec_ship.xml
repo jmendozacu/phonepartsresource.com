@@ -11,5 +11,4 @@
             <block type="ship/adminhtml_quote" name="shipping_quote" />
         </reference>
     </ship_adminhtml_quote_index>
-	
 </layout>

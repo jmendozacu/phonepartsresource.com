@@ -2,6 +2,7 @@
 
 class Themevast_Blog_Block_Manage_Blog_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
 {
+
     public function __construct()
     {
         parent::__construct();
