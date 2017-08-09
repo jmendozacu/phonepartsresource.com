@@ -52,16 +52,14 @@ class Mivec_Product_Adminhtml_QuoteController extends Mage_Adminhtml_Controller_
     {
         //print_r($this->getRequest()->getPost());exit;
         if ($data = $this->getRequest()->getPost()) {
-            $model = Mage::getModel('ship/quote');
-
-            $data['content'] = $data["quote_content"];
+            $model = Mage::getModel('product/quote');
             $data['updated_at'] = date("Y-m-d");
-            unset($data['quote_content']);
             //print_r($data);exit;
 
             $model->setData($data)
                 ->setId($this->getRequest()->getParam('id'));
 
+            //print_r($model->save());exit;
             try {
                 $model->save();
                 Mage::getSingleton('adminhtml/session')->addSuccess('It was successfully saved');
@@ -88,7 +86,7 @@ class Mivec_Product_Adminhtml_QuoteController extends Mage_Adminhtml_Controller_
     {
         if( $this->getRequest()->getParam('id') > 0 ) {
             try {
-                $model = Mage::getModel('ship/quote');
+                $model = Mage::getModel('product/quote');
 
                 $model->setId($this->getRequest()->getParam('id'))
                     ->delete();

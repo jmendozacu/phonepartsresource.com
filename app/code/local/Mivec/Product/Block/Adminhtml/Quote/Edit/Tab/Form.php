@@ -9,25 +9,29 @@ class Mivec_Product_Block_Adminhtml_Quote_Edit_Tab_Form extends Mage_Adminhtml_B
         $form->setHtmlIdPrefix('quote_');
 
         $fieldset = $form->addFieldset("quote_form" , array("legend"   => "Product Quotes"));
-
         $formData = Mage::registry("quote_data")->getData();
         //print_r($formData);exit;
 
-        //WYSIWYG config
-        $config = Mage::getSingleton('cms/wysiwyg_config')->getConfig(
-            array(
-                'a‌​dd_variables' => false,
-                'add_widgets' => false,
-                'files_browser_window_url' => $this->getBaseUrl().'admin‌​/cms_wysiwyg_images/‌​index/')
-        );
-        //print_r($config);exit;
+        //Use WYSIWYG config
+        $config = Mage::getSingleton("cms/wysiwyg_config")->getConfig();
+        //override directives_url
+        $config->setData(
+            Mage::helper('product')->recursiveReplace(
+            '/product/',
+            '/' . (string)Mage::app()->getConfig()->getNode('admin/routers/adminhtml/args/frontName') . '/',
+            $config->getData()
+        ));
+        //print_r($config->getData());exit;
 
-        $fieldset->addField("title" , "text",array(
-            "name"      => "title",
-            "label"     => "title",
-            'class'     => 'required-entry',
-            'required'  => true,
-            'value'     => $formData["title"],
+        $fieldset->addField(
+            "title" ,
+            "text",
+            array(
+                "name"      => "title",
+                "label"     => "title",
+                'class'     => 'required-entry',
+                'required'  => true,
+                'value'     => $formData["title"],
         ));
 
         $_group = $this->helper("product/group");
@@ -35,27 +39,41 @@ class Mivec_Product_Block_Adminhtml_Quote_Edit_Tab_Form extends Mage_Adminhtml_B
             "customer_group" ,
             "select" ,
             array(
-            "name"      => "Customer Group",
-            'label'     => "customer_group",
-            "required"  => true,
-            "value"     => $formData['customer_group'],
-            'options'   => $_group->toOptions(),
-            'after_element_html' => '<span class="hint"><small>Set permit to who can view this Quotes.<br>
-                The Customer\'s group level must greater than current value.</small></span>
-            ',
+                'name'  => "customer_group",
+                'label'     => "Customer Group",
+                "required"  => true,
+                "value"     => $formData['customer_group'],
+                'options'   => $_group->toOptions(),
+                'after_element_html' => '<br><span class="hint"><small>Specific permit to who can view this Quotes.
+                    The Customer\'s group level must greater than current value.</small></span>
+                ',
         ));
+
+        $outputFormat = Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
+        $fieldset->addField(
+            'updated_at',
+            'date',
+            array(
+                'label' => 'Updated',
+                'readonly' => 'yes',
+                'format'    => $outputFormat,
+                'image'  => $this->getSkinUrl('images/grid-cal.gif'),
+                'value' => $formData['updated_at'],
+                'time'  => true,
+            )
+        );
+
         $fieldset->addField(
             'quote_content',
             'editor',
             array(
                 'name'   => 'quote_content',
                 "label"  => "Content",
-                'title'  => 'Content',
-                //'value'  => $formData["content"],
+                'value'  => $formData["quote_content"],
                 'required'  => true,
-                'style'  => 'width:500px; height:500px;',
+                'style'  => 'width:600px; height:500px;',
                 'config'    => $config,
-                'wysiwyg'   => true,
+                //'wysiwyg'   => true,
             )
         );
 

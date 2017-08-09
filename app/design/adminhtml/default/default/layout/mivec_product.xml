@@ -19,7 +19,7 @@
 
     <product_adminhtml_quote_index>
         <reference name="content">
-            <block type="product/adminhtml_quote" name="carrier" />
+            <block type="product/adminhtml_quote" name="product_quote" />
         </reference>
     </product_adminhtml_quote_index>
 </layout>
