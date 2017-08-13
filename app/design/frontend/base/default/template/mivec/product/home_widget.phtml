@@ -1,0 +1,47 @@
+<?php
+$urlRequest = Mage::app()->getFrontController()->getRequest();
+$_pathInfo = $urlRequest->getPathInfo();
+
+if ($_pathInfo == '/') :
+$_quotes = $this->getProdutQuote();
+if (count($_quotes)) :
+?>
+<section class="brandlogo-wrapper hidden-xs">
+    <div class="brandlogo-contain">
+        <div class="bx-title brand-title"><a href="<?php echo Mage::getUrl('product/quote');?>"><h2>Product Quotes</h2></a></div>
+        <table width="100%" border="0" cellspacing="5" cellpadding="0">
+            <tr>
+                <td width="20%">ID</td>
+                <td width="30%">Title</td>
+                <td width="30%">Permit</td>
+                <td width="20%">Pulish Date</td>
+            </tr>
+
+            <?php
+            foreach ($_quotes as $_quote) :
+                //print_r($_quote->getData());exit;
+                $_groupData = Mage::helper("product/group")->getGroup($_quote->getData("customer_group"));
+                //print_r($_groupData);exit;
+
+                $data = array(
+                    'id'	=> $_quote['id'],
+                    "title" => $_quote['title'],
+                    "group" => $_groupData["customer_group_code"],
+                    //'quote_first'	=> "USD $" .$_quote['quote_first'],
+                    //'quote_add'		=> "USD $" . $_quote['quote_add'],
+                    'updated_at'	=> $_quote['updated_at']
+                );
+                //print_r($data);exit;
+                ?>
+                <tr>
+                    <td><?php echo $data['id']?></td>
+                    <td><a href='<?php echo Mage::getUrl("product/quote/view",array("id"=>$data['id']))?>'><?php echo $data['title']?></a></td>
+                    <td><?php echo $data['group'];?></td>
+                    <td><?php echo $data['updated_at']?></td>
+                </tr>
+            <?php endforeach;?>
+        </table>
+    </div>
+</section>
+<?php endif;?>
+<?php endif;?>

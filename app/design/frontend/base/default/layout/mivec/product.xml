@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="mivec_product_widget">
+            <block type="product/home_widget" name="product.quote.widget" before="ship.quote" template="mivec/product/home_widget.phtml"/>
+        </reference>
+    </default>
+
+    <product_quote_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+        <reference name="content">
+            <block type="product/quote_list" name="product_quote_list" template="mivec/product/list.phtml"/>
+        </reference>
+    </product_quote_index>
+</layout>

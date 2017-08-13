@@ -9,6 +9,13 @@ class Mivec_Product_Helper_Group extends Mage_Core_Helper_Abstract
         return $_groupCollection;
     }
 
+    public function getGroup($_id)
+    {
+        if ($_group = Mage::getModel("customer/group")->load($_id)) {
+            return $_group->getData();
+        }
+    }
+
     public function toOptions()
     {
         if ($_collection = $this->getGroupCollection()) {
