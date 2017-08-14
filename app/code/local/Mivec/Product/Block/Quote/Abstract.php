@@ -1,5 +1,5 @@
 <?php
-abstract class Mivec_Product_Block_Abstract extends Mage_Core_Block_Template
+abstract class Mivec_Product_Block_Quote_Abstract extends Mage_Core_Block_Template
 {
     protected function _prepareLayout()
     {
@@ -14,12 +14,18 @@ abstract class Mivec_Product_Block_Abstract extends Mage_Core_Block_Template
                 'label'	=> 'Home',
                 'link'	=> Mage::getBaseUrl()
             ))
-                ->addCrumb('ship_quote' , array(
-                    'label'	=> 'Shipping Quotes',
-                    'link'	=> Mage::getUrl("product/quote")
-                ));
+            ->addCrumb('product_quote' , array(
+                'label'	=> 'Product Quotes',
+                'link'	=> Mage::getUrl("product/quote/list")
+            ));
         }
 
         return parent::_prepareLayout();
+    }
+
+    protected function getCustomerSession()
+    {
+        $this->_seesion = Mage::getSingleton('customer/session');
+        return $this->_seesion;
     }
 }

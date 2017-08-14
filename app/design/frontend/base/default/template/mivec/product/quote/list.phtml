@@ -1,0 +1,80 @@
+<?php
+//echo "product/quote/list";
+?>
+    <style>
+        /* Buttons
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        */
+        button.button::-moz-focus-inner { padding:0; border:0; } /* FF Fix */
+        button.button {
+            -webkit-border-fit:lines; /* <- Safari & Google Chrome Fix */
+            overflow:visible; width:auto; border:0; padding:0; margin:0; background:transparent; cursor:pointer;
+        }
+        button.button span {
+            float:left;
+            display:block;
+            padding:0;
+            font-size:12px;
+            text-align:center;
+            white-space:nowrap;
+            background-color:#ddd;
+            color:#333;
+
+            transition:			color 300ms ease-in-out, background-color 300ms ease-in-out;
+            -moz-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out;
+            -webkit-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out;
+            -o-transition:		color 300ms ease-in-out, background-color 300ms ease-in-out;
+        }
+        .brandlogo-contain a {color:#000;}
+        button.button:hover span { background-color:#333; color:#fff; }
+        button.button span span { padding:0 25px; height:35px; line-height:35px; }
+
+        .warning.button span {background: #FF0000;color: #FFF}
+        /* Smaller button - for inline display with input boxes
+        -------------------------------------------------------------- */
+        button.button.btn-inline span span,
+        .product-view .box-tags .form-add button.button span span { padding:0 10px; line-height:36px; height:36px; }
+
+        /* Big button: Add to cart (product view) & Proceed to checkout
+        -------------------------------------------------------------- */
+        /*.product-view .btn-cart span,
+        button.btn-checkout span {}*/
+        .product-view .btn-cart span span,
+        button.btn-checkout span span { padding:5px 25px; font-size:1.1666em; /*14px*/ }
+    </style>
+    <div class="brandlogo-contain">
+        <div class="bx-title brand-title">
+                <h2><a href="<?php echo Mage::getUrl('product/quote/list');?>">Product Quotes</a></h2>
+        </div>
+        <?php if ($quoteCollection = $this->getProductQuotes()) :?>
+        <table width="100%" border="0" cellspacing="5" cellpadding="0">
+            <tr>
+                <td width="10%">ID</td>
+                <td width="25%">Title</td>
+                <td width="21%">Permit Group</td>
+                <td width="15%"><p>Update Date</p></td>
+            </tr>
+            <?php
+            foreach ($quoteCollection->items as $_quote) :
+                ?>
+                <tr>
+                    <td><?php echo $_quote['id']?></td>
+                    <td><a href='<?php echo Mage::getUrl("product/quote/view" , array("id"  => $_quote["id"]))?>'><?php echo $_quote['title']?></a></td>
+                    <td><?php echo $_quote['group']?></td>
+                    <td><?php echo $_quote['updated_at']?></td>
+                </tr>
+            <?php endforeach;?>
+            <tr>
+                <td colspan="5"><?php echo $quoteCollection->toolbar->toHtml() ?></td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript">
+        function resetResult()
+        {
+            window.location.href = "<?php echo Mage::getUrl('product/quote/list')?>";
+        }
+    </script>
+<?php else:?>
+    <ul class="messages"><li class="notice-msg"><ul><li><span><?php echo "Can not found any Product Quotes";?></span></li></ul></li></ul>
+<?php endif;?>

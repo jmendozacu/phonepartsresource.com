@@ -4,7 +4,7 @@ class Mivec_Product_Adminhtml_QuoteController extends Mage_Adminhtml_Controller_
     protected function _init()
     {
         $this->loadLayout()
-            ->_setActiveMenu("product/quote")
+            ->_setActiveMenu("mivec/product")
             ->_addBreadcrumb("Product Quotes");
         return $this;
     }
@@ -17,6 +17,7 @@ class Mivec_Product_Adminhtml_QuoteController extends Mage_Adminhtml_Controller_
 
     public function editAction()
     {
+        $this->_init();
         $id = $this->getRequest()->getParam('id');
         $model = Mage::getModel("product/quote")->load($id);
 
@@ -27,12 +28,7 @@ class Mivec_Product_Adminhtml_QuoteController extends Mage_Adminhtml_Controller_
             }
 
             Mage::register('quote_data', $model);
-
-            $this->loadLayout();
-            $this->_setActiveMenu('product/quote');
-
             $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
-
             $this->_addContent($this->getLayout()->createBlock('product/adminhtml_quote_edit'))
                 ->_addLeft($this->getLayout()->createBlock('product/adminhtml_quote_edit_tabs'));
 

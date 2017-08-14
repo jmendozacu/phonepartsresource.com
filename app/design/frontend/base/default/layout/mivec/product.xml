@@ -1,18 +1,29 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
     <default>
-        <reference name="mivec_product_widget">
-            <block type="product/home_widget" name="product.quote.widget" before="ship.quote" template="mivec/product/home_widget.phtml"/>
+        <reference name="mivec_product_quote_widget">
+            <block type="product/widget" name="product.quote.widget" before="ship.quote" template="mivec/product/quote/widget.phtml"/>
         </reference>
     </default>
 
-    <product_quote_index>
+    <product_quote_list>
         <reference name="root">
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
 
         <reference name="content">
-            <block type="product/quote_list" name="product_quote_list" template="mivec/product/list.phtml"/>
+            <block type="product/quote_list" name="product_quote_list" template="mivec/product/quote/list.phtml"/>
         </reference>
-    </product_quote_index>
+    </product_quote_list>
+
+    <product_quote_view>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+        <reference name="content">
+            <block type="product/quote_view" name="product_quote_view" template="mivec/product/quote/view.phtml"/>
+        </reference>
+    </product_quote_view>
+
 </layout>

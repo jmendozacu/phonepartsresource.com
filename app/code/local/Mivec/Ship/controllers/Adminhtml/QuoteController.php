@@ -4,7 +4,7 @@ class Mivec_Ship_Adminhtml_QuoteController extends Mage_Adminhtml_Controller_Act
 	protected function _initAction()
 	{
 		$this->loadLayout()
-			->_setActiveMenu("ship/quote")
+			->_setActiveMenu("mivec/ship")
 			->_addBreadcrumb("Shipping Quotes" , "");
 		
 		return $this;
@@ -18,6 +18,8 @@ class Mivec_Ship_Adminhtml_QuoteController extends Mage_Adminhtml_Controller_Act
 	
 	public function editAction()
 	{
+	    $this->_initAction();
+
 		$id     = $this->getRequest()->getParam('id');
 		$model  = Mage::getModel('ship/quote')->load($id);
 
@@ -28,10 +30,6 @@ class Mivec_Ship_Adminhtml_QuoteController extends Mage_Adminhtml_Controller_Act
 			}
 			
 			Mage::register('quote_data', $model);
-
-			$this->loadLayout();
-			$this->_setActiveMenu('ship/quote');
-
 			$this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
 
 			$this->_addContent($this->getLayout()->createBlock('ship/adminhtml_quote_edit'))

@@ -1,0 +1,38 @@
+<?php
+//product/quote/view
+$_quote = $this->getProductQuote();
+
+//check
+$_customerGroup = $this->getCustomerGroup();
+?>
+
+<?php if (!($_customerGroup) || $_customerGroup < $_quote['customer_group']) :?>
+    <p class="error-msg">You have not permit to view this Quote</p>
+<?php else:?>
+<div class="brandlogo-contain">
+    <div class="bx-title brand-title"><h2>View Product Quotes</h2></div>
+    <?php //if ($quoteCollection = $this->getProductQuote()) :?>
+    <table width="100%" border="0" cellspacing="5" cellpadding="0">
+      <tr>
+        <td width="15%" height="30"></td>
+        <td width="85%"></td>
+      </tr>
+      <tr>
+        <td height="30">Title</td>
+        <td><?php echo $_quote['title']?></td>
+      </tr>
+      <tr>
+        <td height="30">Group's Permit</td>
+        <td><?php echo $_quote["group_code"];?></td>
+      </tr>
+      <tr>
+        <td height="30">Update Date</td>
+        <td><?php echo $_quote['updated']?></td>
+      </tr>
+      <tr>
+        <td height="30">Content</td>
+        <td><?php echo $_quote['content']?></td>
+      </tr>
+    </table>
+</div>
+<?php endif;?>

@@ -4,7 +4,7 @@ class Mivec_Ship_Adminhtml_CarrierController extends Mage_Adminhtml_Controller_A
 	protected function _initAction()
 	{
 		$this->loadLayout()
-			->_setActiveMenu("ship/carrier")
+			->_setActiveMenu("mivec/ship")
 			->_addBreadcrumb("Shipping Carrier" , "");
 		
 		return $this;
@@ -19,6 +19,7 @@ class Mivec_Ship_Adminhtml_CarrierController extends Mage_Adminhtml_Controller_A
 	
 	public function editAction()
 	{
+	    $this->_initAction();
 		$id     = $this->getRequest()->getParam('id');
 		$model  = Mage::getModel('ship/carrier')->load($id);
 
@@ -29,12 +30,7 @@ class Mivec_Ship_Adminhtml_CarrierController extends Mage_Adminhtml_Controller_A
 			}
 			
 			Mage::register('carrier_data', $model);
-
-			$this->loadLayout();
-			$this->_setActiveMenu('ship/carrier');
-
 			$this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
-
 			$this->_addContent($this->getLayout()->createBlock('ship/adminhtml_carrier_edit'))
 				->_addLeft($this->getLayout()->createBlock('ship/adminhtml_carrier_edit_tabs'));
 

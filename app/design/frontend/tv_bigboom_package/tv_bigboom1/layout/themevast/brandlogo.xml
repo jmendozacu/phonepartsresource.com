@@ -12,7 +12,7 @@
         <reference name="brand_logo">
 
             <!-- edit by mivec -->
-            <block type="product/widget" name="product.quote.widget" before="ship.quote" template="mivec/product/home_widget.phtml"/>
+            <block type="product/widget" name="product.quote.widget" before="ship.quote" template="mivec/product/quote/widget.phtml"/>
             <!-- add mivec ship quotes-->
             <block type="ship/home_quote" name="ship.quote" before="brand.logo" template="mivec/ship/home_quote.phtml"/>
 
