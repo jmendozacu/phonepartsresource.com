@@ -8,8 +8,14 @@ class Mivec_Product_Block_Quote_List extends Mivec_Product_Block_Quote_Abstract
 
     public function getProductQuotes()
     {
-        $collection = Mage::getModel("product/quote")->getCollection()
-            ->setOrder("id" , "DESC");
+        $collection = Mage::getModel("product/quote")
+            ->getCollection();
+
+        if ($_groupId = $this->getRequest()->getParam("group")) {
+            $collection->addAttributeToFilter("customer_group" , $_groupId);
+        }
+
+        $collection->setOrder("id" , "DESC");
 
         $toolbar = $this->getLayout()->createBlock('page/html_pager');
         //$toolbar = $this->getLayout()->createBlock('customer/order_list_toolbar');
@@ -27,6 +33,7 @@ class Mivec_Product_Block_Quote_List extends Mivec_Product_Block_Quote_Abstract
                 $data[] = array(
                     'id'	=> $_quote['id'],
                     "title"     => $_quote["title"],
+                    "group_id"  => $_quote["customer_group"],
                     "group"     => $_groupData["customer_group_code"],
                     'updated_at'	=> $_quote['updated_at']
                 );

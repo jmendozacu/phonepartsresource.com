@@ -11,10 +11,9 @@ if (count($_quotes)) :
         <div class="bx-title brand-title"><a href="<?php echo Mage::getUrl('product/quote/list');?>"><h2>Product Quotes</h2></a></div>
         <table width="100%" border="0" cellspacing="5" cellpadding="0">
             <tr>
-                <td width="20%">ID</td>
+                <td width="20%">Publish Date</td>
                 <td width="30%">Title</td>
-                <td width="30%">Permit</td>
-                <td width="20%">Pulish Date</td>
+                <td width="30%">Group Permit</td>
             </tr>
 
             <?php
@@ -27,6 +26,7 @@ if (count($_quotes)) :
                     'id'	=> $_quote['id'],
                     "title" => $_quote['title'],
                     "group" => $_groupData["customer_group_code"],
+                    "group_id"  => $_quote["customer_group"],
                     //'quote_first'	=> "USD $" .$_quote['quote_first'],
                     //'quote_add'		=> "USD $" . $_quote['quote_add'],
                     'updated_at'	=> $_quote['updated_at']
@@ -34,10 +34,9 @@ if (count($_quotes)) :
                 //print_r($data);exit;
                 ?>
                 <tr>
-                    <td><?php echo $data['id']?></td>
-                    <td><a href='<?php echo Mage::getUrl("product/quote/view",array("id"=>$data['id']))?>'><?php echo $data['title']?></a></td>
-                    <td><?php echo $data['group'];?></td>
                     <td><?php echo $data['updated_at']?></td>
+                    <td><a href='<?php echo Mage::getUrl("product/quote/view",array("id"=>$data['id']))?>'><?php echo $data['title']?></a></td>
+                    <td><a href='<?php echo Mage::getUrl("product/quote/list" , array("group"=>$data['group_id']))?>'><?php echo $data['group'];?></a></td>
                 </tr>
             <?php endforeach;?>
         </table>
