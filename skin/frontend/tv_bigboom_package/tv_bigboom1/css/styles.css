@@ -101,7 +101,7 @@ dt, dd { line-height: 25px; }
 .main-container {   }
 .main-wrapper { background: url(../images/bg-main-wrapper.png) 0 0 repeat-x;}
 .cms-index-index .main-wrapper { background: none;}
-.main { margin: 0 auto; min-height: 400px; padding: 40px 0; text-align: left;}
+.main { margin: 0 auto; min-height: 400px; padding: 10px 0 40px 0; text-align: left;}
 .catalog-category-view .main,
 .catalog-product-view .main {
     padding-top: 10px;
@@ -2607,8 +2607,9 @@ footer {
 
 
 .block-static-information {
-    background: #f7f7f7;
-    padding: 25px 0;
+	background:#ffffff;
+    /*background: #f7f7f7;
+    padding: 25px 0;*/
 }
 .block-static-information .banner-col {
     padding: 20px;
@@ -2749,7 +2750,8 @@ footer {
 
 
 /*--------------------------------------------------------------------------------*/
-
+/*product quote*/
+.product-quote{border:1px solid #efefef;padding:10px;}
 /*Brand Logo*/
 .brandlogo-wrapper { margin: 30px 0;}
 .brandlogo-contain { padding: 0; text-align: center;}
