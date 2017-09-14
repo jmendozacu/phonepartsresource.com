@@ -42,6 +42,7 @@ $caption = $this->getConfig('caption');
 jQuery( document ).ready(function($) {
 	(function(selector){
 		var $content = $(selector);
+		var $conPa = $content.parent();
 		$content.nivoSlider({
 			slices: 15,
 			boxCols: 8,
@@ -61,7 +62,7 @@ jQuery( document ).ready(function($) {
 				$content.find(".nivo-item").first().addClass("onSelect");
 			},
 			afterChange:function(){
-				var tmpActive = $content.find('.nivo-control.active').text()-1;
+				var tmpActive = $conPa.find('.nivo-control.active').text()-1;
 				if(tmpActive>=0){
 					$content.find(".nivo-item").removeClass("onSelect").
 				eq(tmpActive).addClass("onSelect");
